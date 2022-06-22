@@ -25,6 +25,10 @@ const tattoos = [
     title: "รูปที่6",
     thumbnailUrl: "/images/w6.jpg",
   },
+  {
+    title: "รูปที่7",
+    thumbnailUrl: "/images/w6.jpg",
+  },
 ];
 
 export default tattoos;
