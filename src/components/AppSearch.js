@@ -1,3 +1,5 @@
+import "./AppSearch.css"
+
 function AppSearch (props) {
     const {value, onValurChange} = props
     return (

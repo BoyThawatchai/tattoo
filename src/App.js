@@ -8,52 +8,62 @@ import TattooItem from "./components/TattooItem";
 import TattooPost from "./components/TattooPost";
 import tattoos from "./data/tattoos";
 
-
 function App() {
   const [selectedTattoo, setSelectedTattoo] = useState(null);
-  const [searchText, setSearchTest] = useState('');
+  const [searchText, setSearchTest] = useState("");
 
   function onTattooOpenClick(theTattoo) {
     setSelectedTattoo(theTattoo);
   }
 
   function onTattooCloseClick() {
-    setSelectedTattoo(null)
+    setSelectedTattoo(null);
   }
 
-  // const filteredTattoos = tattoos.filter((tattoo) => { 
+  // const filteredTattoos = tattoos.filter((tattoo) => {
   //   return tattoo.title.includes(searchText)
   // })
 
   // const tattooElements = tattoos.map((tattoo, index) => {
   //   return <TattooItem key={index} tattoo={tattoo} onTattooClick={onTattooOpenClick}/>
-  // }) 
+  // })
 
-    // const tattooElements = filteredTattoos.map((tattoo, index) => {
+  // const tattooElements = filteredTattoos.map((tattoo, index) => {
   //   return <TattooItem key={index} tattoo={tattoo} onTattooClick={onTattooOpenClick}/>
-  // }) 
+  // })
 
-  const tattooElements = tattoos.filter((tattoo) => { 
-    return tattoo.title.includes(searchText)
-  }).map((tattoo, index) => {
-    return <TattooItem key={index} tattoo={tattoo} onTattooClick={onTattooOpenClick}/>
-  })
+  const tattooElements = tattoos
+    .filter((tattoo) => {
+      return tattoo.title.includes(searchText);
+    })
+    .map((tattoo, index) => {
+      return (
+        <TattooItem
+          key={index}
+          tattoo={tattoo}
+          onTattooClick={onTattooOpenClick}
+        />
+      );
+    });
 
   let tattooPost = null;
   if (!!selectedTattoo) {
-    tattooPost = <TattooPost tattoo={selectedTattoo} onBgClick={onTattooCloseClick}/>
+    tattooPost = (
+      <TattooPost tattoo={selectedTattoo} onBgClick={onTattooCloseClick} />
+    );
   }
   return (
     <>
       <div className="App">
         <AppHeader />
-        <AppSearch value={searchText} onValurChange={setSearchTest}/>
-      </div>
-      <div className="app-grid">
-        {tattooElements}
+        <section className="app-section">
+          <div className="app-contenner">
+            <AppSearch value={searchText} onValurChange={setSearchTest} />
+          </div>
+          <div className="app-grid">{tattooElements}</div>
+        </section>
       </div>
       {tattooPost}
-
     </>
   );
 }
